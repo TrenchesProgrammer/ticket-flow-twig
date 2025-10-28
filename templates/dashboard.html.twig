@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard - TicketFlow</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                },
+            },
+        }
+    </script>
+    <link rel="stylesheet" href="/css/custom.css">
+</head>
+<body class="bg-gray-50 font-sans">
+    {% include 'navbar.html.twig' %}
+
+    <div class="padding-container py-8">
+        <header class="mb-8">
+            <h1 class="text-3xl font-bold">Welcome, {{ session.fullname }}</h1>
+            <p class="text-gray-500">Here’s a summary of your activity.</p>
+        </header>
+
+        <!-- Summary Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h3 class="text-gray-500">Total Tickets</h3>
+                <p class="text-3xl font-bold">{{ ticketCounts.total }}</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h3 class="text-gray-500">Open</h3>
+                <p class="text-3xl font-bold">{{ ticketCounts.open }}</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h3 class="text-gray-500">In Progress</h3>
+                <p class="text-3xl font-bold">{{ ticketCounts.in_progress }}</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h3 class="text-gray-500">Closed</h3>
+                <p class="text-3xl font-bold">{{ ticketCounts.closed }}</p>
+            </div>
+        </div>
+
+        <!-- Recent Tickets -->
+        <div class="bg-white p-6 rounded-lg shadow-md">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-semibold">Recent Tickets</h2>
+                <a href="/tickets.php" class="bg-black text-white px-4 py-2 rounded hover:bg-gray-800">
+                    View All Tickets
+                </a>
+            </div>
+            <ul class="space-y-4">
+                {% if recentTickets|length > 0 %}
+                    {% for ticket in recentTickets %}
+                        <li class="border-b pb-2 flex justify-between items-center">
+                            <div>
+                                <p class="font-semibold">{{ ticket.title }}</p>
+                                <p class="text-sm text-gray-500">{{ ticket.date|date("F d, Y") }}</p>
+                            </div>
+                            <span class="px-3 py-1 rounded-full text-sm status-{{ ticket.status }}">
+                                {{ ticket.status|replace({'_': ' '})
+|title }}
+                            </span>
+                        </li>
+                    {% endfor %}
+                {% else %}
+                    <p class="text-gray-500">You have no recent tickets.</p>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

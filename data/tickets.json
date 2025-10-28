@@ -1,0 +1,66 @@
+[
+    {
+        "id": "TICKET-001",
+        "user": "test@example.com",
+        "title": "Website is down",
+        "description": "The main website is showing a 500 error.",
+        "status": "open",
+        "date": "2025-10-28T10:00:00Z"
+    },
+    {
+        "id": "TICKET-002",
+        "user": "test@example.com",
+        "title": "Cannot reset password",
+        "description": "The password reset link is not working.",
+        "status": "in_progress",
+        "date": "2025-10-27T14:30:00Z"
+    },
+    {
+        "id": "TICKET-003",
+        "user": "another@example.com",
+        "title": "Feature request: Dark mode",
+        "description": "Please add a dark mode option to the dashboard.",
+        "status": "open",
+        "date": "2025-10-26T09:00:00Z"
+    },
+    {
+        "id": "TICKET-004",
+        "user": "test@example.com",
+        "title": "Billing inquiry",
+        "description": "I have a question about my last invoice.",
+        "status": "closed",
+        "date": "2025-10-25T11:00:00Z"
+    },
+    {
+        "id": "TICKET-005",
+        "user": "test@example.com",
+        "title": "Slow loading times on the tickets page",
+        "description": "The \/tickets page is taking a long time to load.",
+        "status": "open",
+        "date": "2025-10-28T11:00:00Z"
+    },
+    {
+        "id": "TICKET-006",
+        "user": "test@example.com",
+        "title": "Typo on the homepage",
+        "description": "There is a small typo in the main heading.",
+        "status": "in_progress",
+        "date": "2025-10-28T09:30:00Z"
+    },
+    {
+        "id": "TICKET-6900135f436a3",
+        "user": "ireanuoluwah@gmail.com",
+        "title": "sxadca",
+        "description": "ascasc",
+        "status": "open",
+        "date": "2025-10-28"
+    },
+    {
+        "id": "TICKET-690013a43f49e",
+        "user": "ireanuoluwah@gmail.com",
+        "title": "hfxgxhxh",
+        "description": "ghccg",
+        "status": "in_progress",
+        "date": "2025-10-28"
+    }
+]

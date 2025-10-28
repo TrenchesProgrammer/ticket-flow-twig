@@ -1,0 +1,54 @@
+.btn-custom {
+  background-color: #8B5CF6; /* purple-600 */
+  color: white;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-custom:hover {
+  background-color: #7C3AED; /* purple-700 */
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  transform: translateY(-2px);
+}
+
+.padding-container {
+  padding-left: 1.5rem; /* px-6 */
+  padding-right: 1.5rem; /* px-6 */
+}
+
+@media (min-width: 1024px) {
+  .padding-container {
+    padding-left: 5rem; /* lg:px-20 */
+    padding-right: 5rem; /* lg:px-20 */
+  }
+}
+
+@media (min-width: 1536px) {
+  .padding-container {
+    padding-left: 0; /* 2xl:px-0 */
+    padding-right: 0; /* 2xl:px-0 */
+  }
+}
+
+.status-open {
+    background-color: #D1FAE5; /* green-200 */
+    color: #065F46; /* green-800 */
+}
+
+.status-in_progress {
+    background-color: #FEF3C7; /* amber-200 */
+    color: #92400E; /* amber-800 */
+}
+
+.status-closed {
+    background-color: #E5E7EB; /* gray-200 */
+    color: #374151; /* gray-800 */
+}
+
+.nav-active {
+    color: black;
+    font-weight: 600;
+}
