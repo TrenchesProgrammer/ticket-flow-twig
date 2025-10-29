@@ -3,11 +3,6 @@
     "description": "A simple Twig project.",
     "type": "project",
     "license": "MIT",
-    "authors": [
-        {
-            "name": "Gemini"
-        }
-    ],
     "require": {
         "twig/twig": "^3.21"
     }
