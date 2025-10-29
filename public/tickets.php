@@ -23,18 +23,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $description = $_POST['description'] ?? '';
         if (!empty($title) && !empty($description)) {
             addTicket($userEmail, $title, $description);
+            setFlashMessage('success', 'Ticket added successfully!');
+        } else {
+            setFlashMessage('error', 'Title and description cannot be empty.');
         }
     } elseif ($action === 'update') {
         $ticketId = $_POST['ticket_id'] ?? '';
         $description = $_POST['description'] ?? '';
         $status = $_POST['status'] ?? '';
-        if (!empty($ticketId)) {
+        if (!empty($ticketId) && !empty($description) && !empty($status)) {
             updateTicket($ticketId, $description, $status);
+            setFlashMessage('success', 'Ticket updated successfully!');
+        } else {
+            setFlashMessage('error', 'Ticket ID, description, and status cannot be empty.');
         }
     } elseif ($action === 'delete') {
         $ticketId = $_POST['ticket_id'] ?? '';
         if (!empty($ticketId)) {
             deleteTicket($ticketId);
+            setFlashMessage('success', 'Ticket deleted successfully!');
+        } else {
+            setFlashMessage('error', 'Ticket ID cannot be empty.');
         }
     }
 
@@ -51,4 +60,5 @@ echo $twig->render('tickets.html.twig', [
     'session' => $session,
     'tickets' => $userTickets,
     'currentPage' => 'tickets',
+    'flash_message' => getFlashMessage()
 ]);

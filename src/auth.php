@@ -86,3 +86,22 @@ function isLoggedIn(): bool {
     }
     return isset($_SESSION['email']);
 }
+
+function setFlashMessage(string $type, string $message): void {
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+    $_SESSION['flash_message'] = ['type' => $type, 'message' => $message];
+}
+
+function getFlashMessage(): ?array {
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+    if (isset($_SESSION['flash_message'])) {
+        $message = $_SESSION['flash_message'];
+        unset($_SESSION['flash_message']);
+        return $message;
+    }
+    return null;
+}

@@ -1,3 +1,5 @@
+console.log('tickets.js is attempting to load');
+console.log('tickets.js loaded');
 document.addEventListener('DOMContentLoaded', () => {
     const addTicketBtn = document.getElementById('add-ticket-btn');
     const addTicketModal = document.getElementById('add-ticket-modal');
@@ -29,12 +31,31 @@ document.addEventListener('DOMContentLoaded', () => {
             const status = card.dataset.ticketStatus;
             const date = card.dataset.ticketDate;
 
-            document.getElementById('details-title').textContent = title;
-            document.getElementById('details-ticket-id').value = ticketId;
-            document.getElementById('details-description').value = description;
-            document.getElementById('details-status').value = status;
+            const descriptionEl = document.getElementById('details-description');
+            descriptionEl.value = description;
+            const statusEl = document.getElementById('details-status');
+            statusEl.value = status;
             document.getElementById('details-date').textContent = new Date(date).toLocaleDateString();
 
+            const saveBtn = document.querySelector('#update-ticket-form button[type="submit"]');
+            const deleteBtn = document.getElementById('delete-ticket-btn');
+
+            if (status === 'closed') {
+                descriptionEl.disabled = true;
+                statusEl.disabled = true;
+                saveBtn.disabled = true;
+                saveBtn.classList.add('bg-gray-400', 'cursor-not-allowed');
+                deleteBtn.style.display = 'none';
+            } else {
+                descriptionEl.disabled = false;
+                statusEl.disabled = false;
+                saveBtn.disabled = false;
+                saveBtn.classList.remove('bg-gray-400', 'cursor-not-allowed');
+                deleteBtn.style.display = 'block';
+            }
+
+            console.log('Ticket card clicked:', ticketId);
+            console.log('ticketDetailsModal element:', ticketDetailsModal);
             ticketDetailsModal.classList.remove('hidden');
         });
     });

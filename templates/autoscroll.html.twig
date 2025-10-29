@@ -1,0 +1,35 @@
+<style>
+.scroll-wrapper {
+  width: 100%;
+}
+
+.scroll-track {
+  width: max-content;
+}
+
+/* Smooth infinite scroll animation */
+ @keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 12s linear infinite;
+}
+</style>
+
+<div class="scroll-wrapper overflow-hidden whitespace-nowrap">
+    <div class="scroll-track flex items-center animate-scroll">
+      {% for i in 1..16 %}
+      <p
+        class="text-4xl px-6"
+      >
+        BRAND
+      </p>
+      {% endfor %}
+    </div>
+  </div>

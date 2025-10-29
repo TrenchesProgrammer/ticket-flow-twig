@@ -29,9 +29,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         $result = signup($fullname, $email, $password);
         if ($result['success']) {
+            setFlashMessage('success', $result['message']);
             header('Location: /dashboard.php');
             exit();
         } else {
+            setFlashMessage('error', $result['message']);
             $errors['general'] = $result['message'];
         }
     }
@@ -39,5 +41,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 echo $twig->render('signup.html.twig', [
     'errors' => $errors,
-    'session' => getSession()
+    'session' => getSession(),
+    'flash_message' => getFlashMessage()
 ]);

@@ -1,0 +1,84 @@
+<style>
+  .faq-item .answer {
+    display: none;
+  }
+  .faq-item.open .answer {
+    display: block;
+  }
+</style>
+
+<div class="w-full">
+    <h2 class="text-2xl text-center mb-6">Frequently Asked Questions</h2>
+    <div id="faq-container">
+        <div class="faq-item border-b border-gray-200 py-4">
+            <button class="w-full flex justify-between items-center">
+                <h3 class="font-semibold">How do I create a new ticket?</h3>
+                <span class="toggle-icon">+</span>
+            </button>
+            <div class="answer mt-2 text-gray-600">
+                <p>
+                    To create a new ticket, simply click the "Add Ticket" button on your dashboard and fill out
+                    the required fields.
+                </p>
+            </div>
+        </div>
+        <div class="faq-item border-b border-gray-200 py-4">
+            <button class="w-full flex justify-between items-center">
+                <h3 class="font-semibold">Can I customize the ticket statuses?</h3>
+                <span class="toggle-icon">+</span>
+            </button>
+            <div class="answer mt-2 text-gray-600">
+                <p>
+                    Yes, you can customize the ticket statuses to fit your team's workflow in the settings
+                    panel.
+                </p>
+            </div>
+        </div>
+        <div class="faq-item border-b border-gray-200 py-4">
+            <button class="w-full flex justify-between items-center">
+                <h3 class="font-semibold">Is there a mobile app?</h3>
+                <span class="toggle-icon">+</span>
+            </button>
+            <div class="answer mt-2 text-gray-600">
+                <p>
+                    Currently, we have a responsive web application that works great on all devices. A native
+                    mobile app is on our roadmap.
+                </p>
+            </div>
+        </div>
+        <div class="faq-item border-b border-gray-200 py-4">
+            <button class="w-full flex justify-between items-center">
+                <h3 class="font-semibold">How can I track the progress of my tickets?</h3>
+                <span class="toggle-icon">+</span>
+            </button>
+            <div class="answer mt-2 text-gray-600">
+                <p>
+                    You can track the progress of your tickets on the main dashboard, which provides real-time
+                    updates and status indicators for every ticket.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const faqContainer = document.getElementById('faq-container');
+        faqContainer.addEventListener('click', function (e) {
+            const button = e.target.closest('button');
+            if (button) {
+                const item = button.parentElement;
+                const answer = item.querySelector('.answer');
+                const icon = item.querySelector('.toggle-icon');
+
+                if (item.classList.contains('open')) {
+                    item.classList.remove('open');
+                    icon.textContent = '+';
+                } else {
+                    item.classList.add('open');
+                    icon.textContent = '-';
+                }
+            }
+        });
+    });
+</script>

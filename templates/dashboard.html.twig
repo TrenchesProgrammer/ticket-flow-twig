@@ -56,10 +56,15 @@
                     View All Tickets
                 </a>
             </div>
-            <ul class="space-y-4">
+            <div class="space-y-4">
                 {% if recentTickets|length > 0 %}
                     {% for ticket in recentTickets %}
-                        <li class="border-b pb-2 flex justify-between items-center">
+                        <div class="ticket-card border-b pb-2 flex justify-between items-center cursor-pointer"
+                             data-ticket-id="{{ ticket.id }}"
+                             data-ticket-title="{{ ticket.title }}"
+                             data-ticket-description="{{ ticket.description }}"
+                             data-ticket-status="{{ ticket.status }}"
+                             data-ticket-date="{{ ticket.date }}">
                             <div>
                                 <p class="font-semibold">{{ ticket.title }}</p>
                                 <p class="text-sm text-gray-500">{{ ticket.date|date("F d, Y") }}</p>
@@ -68,7 +73,7 @@
                                 {{ ticket.status|replace({'_': ' '})
 |title }}
                             </span>
-                        </li>
+                        </div>
                     {% endfor %}
                 {% else %}
                     <p class="text-gray-500">You have no recent tickets.</p>
@@ -76,5 +81,56 @@
             </ul>
         </div>
     </div>
+
+    <!-- Ticket Details Modal -->
+    <div id="ticket-details-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+        <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-lg">
+            <h2 id="details-title" class="text-2xl font-bold mb-4"></h2>
+            <form id="update-ticket-form" action="/tickets.php" method="POST">
+                <input type="hidden" name="action" value="update">
+                <input type="hidden" id="details-ticket-id" name="ticket_id">
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">Description</label>
+                    <textarea id="details-description" name="description" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" rows="4"></textarea>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">Status</label>
+                    <select id="details-status" name="status" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
+                        <option value="open">Open</option>
+                        <option value="in_progress">In Progress</option>
+                        <option value="closed">Closed</option>
+                    </select>
+                </div>
+                <div class="mb-4 text-sm text-gray-500">
+                    <p><strong>Date Created:</strong> <span id="details-date"></span></p>
+                </div>
+                <div class="flex justify-between items-center">
+                    <button type="button" id="delete-ticket-btn" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Delete</button>
+                    <div class="flex gap-3">
+                        <button type="button" id="cancel-details-btn" class="bg-gray-200 text-black px-4 py-2 rounded hover:bg-gray-300">Cancel</button>
+                        <button type="submit" class="bg-black text-white px-4 py-2 rounded">Save</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div id="confirm-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+        <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-sm">
+            <h2 class="text-lg font-semibold mb-4">Are you sure?</h2>
+            <p class="text-gray-600 mb-6">Are you sure you want to delete this ticket?</p>
+            <form id="delete-ticket-form" action="/tickets.php" method="POST">
+                <input type="hidden" name="action" value="delete">
+                <input type="hidden" id="delete-ticket-id" name="ticket_id">
+                <div class="flex justify-end gap-3">
+                    <button type="button" id="cancel-delete-btn" class="bg-gray-300 text-black px-4 py-2 rounded">Cancel</button>
+                    <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">Delete</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="/js/toast.js"></script>
+    <script src="/js/tickets.js"></script>
 </body>
 </html>

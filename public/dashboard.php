@@ -38,4 +38,5 @@ echo $twig->render('dashboard.html.twig', [
     'ticketCounts' => $ticketCounts,
     'recentTickets' => $recentTickets,
     'currentPage' => 'dashboard',
+    'flash_message' => getFlashMessage()
 ]);
